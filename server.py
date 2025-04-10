@@ -7,17 +7,17 @@ from Crypto.Util.Padding import unpad
 import socket
 import json
 
-# File log hiệu suất
+# Performance log file
 PERFORMANCE_LOG_FILE = "performance_log.csv"
 
-# Hàm ghi log hiệu suất vào file CSV
+# Function to write performance log into CSV file
 def log_performance(step, duration):
     with open(PERFORMANCE_LOG_FILE, "a", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow([step, f"{duration:.15f}"])
     print(f"[Performance] {step}: {duration:.15f} seconds")
 
-# --------- Chức năng tạo khóa ECC ---------
+# --------- ECC key generation function ---------
 def ecc_priv_key_gen():
     print("[Server] Generating ECC private key...")
     start = time.time()
@@ -38,7 +38,7 @@ def ecc_pub_key_gen(ecc_priv_key):
     print(pub_key)
     return pub_key
 
-# --------- Chức năng giải mã AES CBC ---------
+# --------- AES CBC decryption function ---------
 def aes_cbc_decrypt(aes_cipher_text, aes_key):
     print("[Server] Extracting IV from AES ciphertext...")
     iv = aes_cipher_text[:16]
@@ -52,11 +52,11 @@ def aes_cbc_decrypt(aes_cipher_text, aes_key):
     log_performance("AES-CBC decryption", end - start)
     return plaintext
 
-# --------- Thiết lập máy chủ TCP ---------
+# --------- Set up TCP server ---------
 HOST = '0.0.0.0'
 PORT = 65432
 
-# Ghi header cho file CSV (chỉ ghi nếu file chưa tồn tại)
+# Write CSV header (only if the file doesn't exist)
 with open(PERFORMANCE_LOG_FILE, "w", newline="") as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(["Step", "Duration (seconds)"])
@@ -105,7 +105,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             encrypted_file = bytes.fromhex(encrypted_file_hex)
             print("[Server] Converted AES key and file data from hex to bytes.")
 
-            # Lưu file mã hóa ra đĩa
+            # Save encrypted file to disk
             encrypted_filename = "encrypted_file_copy.bin"
             with open(encrypted_filename, "wb") as f_enc:
                 f_enc.write(encrypted_file)

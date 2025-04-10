@@ -12,14 +12,14 @@ This project demonstrates a secure file transfer system using a combination of s
 
 This project comprises two Python scripts:
 
-- **client.py**: 
+- client.py: 
   - Reads a file (default: `file_to_send.txt`).
   - Generates a random AES key and encrypts the file using AES in CBC mode.
   - Encrypts the AES key using the server's ECC public key (using ECIES).
   - Packages the encrypted AES key and file into a JSON object.
   - Sends the JSON data to the server over a TCP socket.
 
-- **server.py**: 
+- server.py: 
   - Generates an ECC key pair (public and private keys).
   - Listens for incoming TCP connections.
   - Sends its ECC public key to the client.
@@ -30,10 +30,10 @@ This project comprises two Python scripts:
 
 ## Features
 
-- **AES-CBC Encryption**: Secures file data with a random 16-byte initialization vector.
-- **ECC Encryption via ECIES**: Ensures secure key transmission between the client and server.
-- **TCP Socket Communication**: Enables real-time data transfer.
-- **Performance Logging**: Measures and logs the execution time of each encryption, decryption, and communication step in CSV format.
+- AES-CBC Encryption**: Secures file data with a random 16-byte initialization vector.
+- ECC Encryption via ECIES**: Ensures secure key transmission between the client and server.
+- TCP Socket Communication**: Enables real-time data transfer.
+- Performance Logging**: Measures and logs the execution time of each encryption, decryption, and communication step in CSV format.
 
 ## Dependencies
 
@@ -43,10 +43,6 @@ The project requires the following Python packages:
 - [pycryptodome](https://pycryptodome.readthedocs.io/) (for AES encryption and decryption)
 - Standard libraries: `socket`, `time`, `csv`, `json`, `binascii`
 
-You can install the required dependencies via pip:
-
-```bash
-pip install eciespy pycryptodome
 ```
 
 _Note: Make sure to use the correct package names. Some systems might require additional configuration for installing `pycryptodome`._
@@ -119,8 +115,8 @@ _Note: Make sure to use the correct package names. Some systems might require ad
 ## Performance Logging
 
 Both the client and the server log the duration of each major step:
-- **Client:** Logs for file reading, TCP connection, ECC encryption of AES key, AES-CBC encryption, and JSON packaging.
-- **Server:** Logs for ECC key generation, AES-CBC decryption, and the overall decryption process.
+- Client: Logs for file reading, TCP connection, ECC encryption of AES key, AES-CBC encryption, and JSON packaging.
+- Server: Logs for ECC key generation, AES-CBC decryption, and the overall decryption process.
 
 These logs are saved in:
 - `client_performance_log.csv` (client-side)
@@ -131,8 +127,4 @@ Review these files to analyze and improve the performance of each operation.
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
 
----
-
-Feel free to modify this README.md file to better suit your project's specific needs or to add any additional instructions.

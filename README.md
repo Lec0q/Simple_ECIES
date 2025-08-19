@@ -1,6 +1,4 @@
 # Simple_ECIES
-Below is a sample README.md file you can use for your GitHub repository. It explains the purpose of the project, details the client–server implementation for secure file transfer, lists the required dependencies, and provides instructions on setup and usage.
-
 ---
 
 ```markdown
